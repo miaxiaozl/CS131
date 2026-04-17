@@ -90,7 +90,7 @@ def partial_x(img):
     out = None
 
     ### YOUR CODE HERE
-    kernel = np.array([[1, 0, -1]] * 3)
+    kernel = np.array([1, 0, -1])
     out = conv(img, kernel)
     ### END YOUR CODE
 
@@ -111,7 +111,7 @@ def partial_y(img):
     out = None
 
     ### YOUR CODE HERE
-    kernel = np.array([[1, 0, -1]] * 3).T
+    kernel = np.array([1, 0, -1]).T
     out = conv(img, kernel)
     ### END YOUR CODE
 
