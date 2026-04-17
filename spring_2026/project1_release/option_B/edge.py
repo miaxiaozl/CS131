@@ -172,27 +172,29 @@ def non_maximum_suppression(G, theta):
 
     #print(G)
     ### BEGIN YOUR CODE
-    # boundary conditions
-    for i in range(1, H - 1):
-        for j in range(1, W - 1):
+    for i in range(H):
+        for j in range(W):
             angle = theta[i, j]
             # left / right
             if angle == 0 or angle == 180:
-                n1 = G[i, j - 1]
-                n2 = G[i, j + 1]
+                i1, j1 = i, max(j - 1, 0)
+                i2, j2 = i, min(j + 1, W - 1)
             # upper right / bottom left
             elif angle == 45 or angle == 225:
-                n1 = G[i - 1, j - 1]
-                n2 = G[i + 1, j + 1]
+                i1, j1 = max(i - 1, 0), max(j - 1, 0)
+                i2, j2 = min(i + 1, H - 1), min(j + 1, W - 1)
             # up / down
             elif angle == 90 or angle == 270:
-                n1 = G[i - 1, j]
-                n2 = G[i + 1, j]
+                i1, j1 = max(i - 1, 0), j
+                i2, j2 = min(i + 1, H - 1), j
             # upper left / bottom right
             elif angle == 135 or angle == 315:
-                n1 = G[i - 1, j + 1]
-                n2 = G[i + 1, j - 1]
+                i1, j1 = max(i - 1, 0), min(j + 1, W - 1)
+                i2, j2 = min(i + 1, H - 1), max(j - 1, 0)
+
             # compare with both neighbors
+            n1 = G[i1, j1]
+            n2 = G[i2, j2]
             if G[i, j] >= n1 and G[i, j] >= n2:
                 out[i, j] = G[i, j]
     ### END YOUR CODE
