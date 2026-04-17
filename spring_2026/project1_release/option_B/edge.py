@@ -358,9 +358,15 @@ def hough_transform(img):
 
     # Transform each point (x, y) in image
     # Find rho corresponding to values in thetas
-    # and increment the accumulator in the corresponding coordiate.
+    # and increment the accumulator in the corresponding coordinate.
     ### YOUR CODE HERE
-    pass
+    for i in range(len(xs)):
+        x = xs[i]
+        y = ys[i]
+        for t in range(len(thetas)):
+            rho = x * cos_t[t] + y * sin_t[t]
+            rho_idx = int(np.round(rho + diag_len))
+            accumulator[rho_idx, t] += 1 # increase vote
     ### END YOUR CODE
 
     return accumulator, rhos, thetas
