@@ -70,6 +70,7 @@ def gaussian_kernel(size, sigma):
         for j in range(size):
             frac = -(((i - k) ** 2) + ((j - k) ** 2)) / (2 * (sigma ** 2))
             kernel[i][j] = coef * np.exp(frac)
+    print(kernel)
     ### END YOUR CODE
 
     return kernel
