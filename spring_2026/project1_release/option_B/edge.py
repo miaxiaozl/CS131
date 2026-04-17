@@ -285,7 +285,7 @@ def link_edges(strong_edges, weak_edges):
     queue = deque(indices)
     directions = [(-1, -1), (-1, 0), (-1, 1),
                   (0, -1),           (0, 1),
-                  (1, -1), (1, 0), (1, -1)]
+                  (1, -1), (1, 0), (1, 1)]
     
     while (queue):  # BFS
         i, j = queue.popleft()
