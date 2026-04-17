@@ -36,10 +36,13 @@ def conv(image, kernel):
     padded = np.pad(image, pad_width, mode='edge')
 
     ### YOUR CODE HERE
+    # convolution should flip the kernel
+    flipped = np.flip(kernel, axis=(0, 1))
+
     for i in range(Hi):
         for j in range(Wi):
             window = padded[i:i+Hk, j:j+Wk]
-            out[i, j] = np.sum(window * kernel)
+            out[i, j] = np.sum(window * flipped)
     ### END YOUR CODE
 
     return out
