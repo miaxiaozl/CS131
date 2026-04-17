@@ -222,7 +222,7 @@ def double_thresholding(img, high, low):
 
     ### YOUR CODE HERE
     strong_edges = img > high
-    weak_edges = img <= high and img > low
+    weak_edges = (img <= high) & (img > low)
     ### END YOUR CODE
 
     return strong_edges, weak_edges
