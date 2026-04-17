@@ -196,7 +196,7 @@ def non_maximum_suppression(G, theta):
             # compare with both neighbors
             n1 = G[i1, j1]
             n2 = G[i2, j2]
-            if G[i, j] > n1 and G[i, j] > n2:
+            if G[i, j] >= n1 and G[i, j] >= n2:
                 out[i, j] = G[i, j]
     ### END YOUR CODE
 
@@ -315,7 +315,12 @@ def canny(img, kernel_size=5, sigma=1.4, high=20, low=15):
         edge: numpy array of shape(H, W).
     """
     ### YOUR CODE HERE
-    pass
+    filter = gaussian_kernel(kernel_size, sigma)
+    smoothed = conv(img, filter)
+    G, theta = gradient(smoothed)
+    nms = non_maximum_suppression(G, theta)
+    strong, weak = double_thresholding(nms, high, low)
+    edge = link_edges(strong, weak)
     ### END YOUR CODE
 
     return edge
