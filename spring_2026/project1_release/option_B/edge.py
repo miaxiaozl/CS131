@@ -142,7 +142,9 @@ def gradient(img):
     Gy = partial_y(img)
     G = np.sqrt(Gx ** 2 + Gy ** 2)
 
+    # support of theta should be [0, 360) according to notebook
     theta = np.degrees(np.arctan2(Gy, Gx))
+    theta = (theta + 360) % 360  
     ### END YOUR CODE
 
     return G, theta
