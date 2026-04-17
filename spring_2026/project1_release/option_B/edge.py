@@ -36,7 +36,10 @@ def conv(image, kernel):
     padded = np.pad(image, pad_width, mode='edge')
 
     ### YOUR CODE HERE
-    pass
+    for i in range(Hi):
+        for j in range(Wi):
+            window = padded[i:i+Hk, j:j+Wk]
+            out[i, j] = np.sum(window * kernel)
     ### END YOUR CODE
 
     return out
