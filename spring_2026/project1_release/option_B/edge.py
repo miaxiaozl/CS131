@@ -8,6 +8,7 @@ Python Version: 3.5+
 """
 
 import numpy as np
+from collections import deque
 
 def conv(image, kernel):
     """ An implementation of convolution filter.
@@ -281,7 +282,22 @@ def link_edges(strong_edges, weak_edges):
     edges = np.copy(strong_edges)
 
     ### YOUR CODE HERE
-    pass
+    queue = deque(indices)
+    directions = [(-1, -1), (-1, 0), (-1, 1)
+                  (0, -1),           (0, 1)
+                  (1, -1), (1, 0), (1, -1)]
+    
+    while (queue):  # BFS
+        i, j = queue.popleft()
+        for di, dj in directions:
+            ni, nj = i + di, j + dj
+            # check bounds
+            if 0 <= ni < H and 0 <= nj < W:
+                # if neighbor is weak, promote it
+                if weak_edges[ni, nj]:
+                    edges[ni, nj] = True
+                    weak_edges[ni, nj] = False  # avoid revisiting
+                    queue.append((ni, nj))
     ### END YOUR CODE
 
     return edges
