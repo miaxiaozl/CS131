@@ -138,7 +138,11 @@ def gradient(img):
     theta = np.zeros(img.shape)
 
     ### YOUR CODE HERE
-    pass
+    Gx = partial_x(img)
+    Gy = partial_y(img)
+    G = np.sqrt(Gx ** 2 + Gy ** 2)
+
+    theta = np.arctan2(Gy/Gx)
     ### END YOUR CODE
 
     return G, theta
