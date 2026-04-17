@@ -193,7 +193,7 @@ def non_maximum_suppression(G, theta):
                 n1 = G[i - 1, j - 1]
                 n2 = G[i + 1, j + 1]
             # compare with both neighbors
-            if G[i, j] > n1 and G[i, j] > n2:
+            if G[i, j] >= n1 and G[i, j] >= n2:
                 out[i, j] = G[i, j]
     ### END YOUR CODE
 
