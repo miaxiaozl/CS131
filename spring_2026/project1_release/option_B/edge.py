@@ -64,7 +64,12 @@ def gaussian_kernel(size, sigma):
     kernel = np.zeros((size, size))
 
     ### YOUR CODE HERE
-    pass
+    k = (size - 1) / 2
+    coef = 1 / (2 * np.pi * (sigma ** 2))
+    for i in range(size):
+        for j in range(size):
+            frac = -(((i - k) ** 2) + ((j - k) ** 2)) / (2 * (sigma ** 2))
+            kernel[i][j] = coef * np.exp(frac)
     ### END YOUR CODE
 
     return kernel
